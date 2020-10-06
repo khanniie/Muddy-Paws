@@ -1,0 +1,20 @@
+:root {
+  --main-bg-color: #fff1dd;
+  --alt-bg-color: #ecf7ff;
+  --alt-2-bg-color: #FEE8DD;
+  --light-text-color: #fff1dd;
+  --dark-color: #204336;
+  --small-spacing: 16px;
+  --medium-spacing: 36px;
+  --large-spacing: 56px;
+  --medium-text-color: #c09d84;
+  --button-color: #b77348;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --small-spacing: 8px;
+    --medium-spacing: 12px;
+    --large-spacing: 32px;
+  }
+}

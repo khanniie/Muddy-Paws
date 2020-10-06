@@ -1,0 +1,211 @@
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  margin: 0px;
+  padding: 0px;
+  background-color: var(--main-bg-color);
+  font-family: Roboto;
+  position: relative;
+  min-width: 100vw;
+  min-height: 100vh;
+  color: var(--dark-color);
+}
+
+.wid-100 {
+  width: 100%;
+}
+
+#navbar {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: var(--small-spacing) var(--medium-spacing);
+  background-color: var(--main-bg-color);
+  z-index: 111;
+}
+
+.menu-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-item {
+  margin: 0px;
+  margin-left: var(--medium-spacing);
+  margin-right: var(--medium-spacing);
+  font-family: Corben;
+}
+
+p.menu-item a{
+  font-size: 30px;
+  color: var(--dark-color);
+  text-decoration: none;
+}
+
+#logo {
+  margin-right: var(--medium-spacing);
+}
+
+#top {
+  height: 100vh;
+}
+
+.section {
+  position: relative;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#big-description {
+  font-size: 40px;
+}
+
+#full-center {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 450px;
+}
+
+h1 {
+  font-size: 42px;
+  font-weight: 700;
+  font-family: Corben;
+  text-align: center;
+  line-height: 140%;
+  margin: 0px;
+}
+
+#full-center p {
+  margin: var(--large-spacing);
+  font-size: 24px;
+  font-weight: 400;
+  font-style: italic;
+  width: 450px;
+  text-align: center;
+  line-height: 140%;
+}
+
+button {
+  font-family: Corben;
+  font-weight: 700;
+  border: 3px solid var(--medium-text-color);
+  padding: var(--small-spacing) var(--medium-spacing);
+  font-size: 24px;
+  border-radius: var(--small-spacing);
+  background-color: rgba(0, 0, 0, 0);
+  color: var(--medium-text-color);
+  transition: background-color 0.4s;
+}
+
+button:hover{
+	background-color: rgba(255, 255, 255, 0.7);
+}
+
+.important-button {
+  background-color: var(--button-color);
+  border: 0px;
+  color: var(--light-text-color);
+  box-shadow: 0px 4px 4px 2px rgba(78, 51, 35, 0.2),
+    0px 4px 4px rgba(86, 64, 51, 0.1), 0px 4px 12px rgba(150, 133, 123, 0.08);
+}
+
+.important-button:hover{
+	background-color: var(--alt-bg-color);
+	color: var(--medium-text-color);
+}
+
+.middle-product {
+  width: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.middle-product img {
+  width: 100%;
+}
+
+#middle {
+	background-color: var(--alt-bg-color);
+	padding: var(--small-spacing) 0px var(--large-spacing) 0px;
+}
+
+#middle p {
+  margin: var(--small-spacing);
+  font-size: 20px;
+  font-weight: 400;
+  font-style: italic;
+  width: 450px;
+  text-align: center;
+  line-height: 140%;
+  text-align: center;
+  width: 100%;
+}
+
+.col {
+  flex-direction: column;
+}
+
+.space-evenly {
+  justify-content: space-evenly;
+}
+
+#middle h1 {
+  color: #4c77b0;
+}
+
+.top-bottom-margin {
+  margin-top: var(--medium-spacing);
+  margin-bottom: var(--medium-spacing);
+}
+
+#see-more{
+	position: fixed;
+	left: 0px;
+	bottom: var(--small-spacing);
+	width: 100%;
+	text-align: center;
+}
+
+#bottom{
+	background-color: var(--alt-2-bg-color);
+	padding: var(--large-spacing) 0px 150px 0px;
+}
+
+#carousel{
+	position: relative;
+	width: 600px;
+	height: 300px;
+	margin: var(--medium-spacing) 0px;
+}
+
+#carousel-img{
+	position: absolute;
+	left: 50px;
+	width: 500px;
+	height: 300px;
+	background-color: white;
+	z-index: 2;
+	background-image: url(../assets/dog_in_frame.png);
+}
+
+#carousel-bg{
+	position: absolute;
+	left: 0px;
+	top: 25px;
+	width: 600px;
+	height: 250px;
+	background-color: var(--dark-color);
+	z-index: 0;
+}
