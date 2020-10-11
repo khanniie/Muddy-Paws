@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Muddy Paws</title>
-
+    <meta charset="utf-8" />
     <link
       href="https://fonts.googleapis.com/css2?family=Corben:wght@400;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
@@ -14,7 +14,12 @@
   <body>
     <div id="navbar">
       <div class="menu-items">
-        <a href="../../"><img id="logo" src="../../assets/logo.svg" /></a>
+        <a href="../../"
+          ><img
+            id="logo"
+            src="../../assets/logo.svg"
+            alt="Muddy Paws site logo"
+        /></a>
         <p class="menu-item"><a href="../../browse">Shop</a></p>
         <p class="menu-item"><a href="../../about">About us</a></p>
         <p class="menu-item"><a href="../../contact">Contact</a></p>
@@ -28,40 +33,48 @@
       <div id="product-detail-main" class="row">
         <div class="left" id="product-image-container">
           <div class="img-container">
-            <img class="tall" src="../../assets/cat-harness/pink.jpg" />
+            <img
+              class="wide"
+              src="../../assets/food/red.jpg"
+              alt="food bag attachment in red"
+            />
           </div>
           <div class="row thumbnails">
             <div class="img-container thumbnail activated">
-              <img class="tall" src="../../assets/cat-harness/pink.jpg" />
+              <img
+                class="tall"
+                src="../../assets/food/red.jpg"
+                alt="food bag attachment in red"
+              />
             </div>
             <div class="img-container thumbnail">
-              <img class="tall" src="../../assets/cat-harness/pink-cat-2.png" />
+              <img
+                class="tall"
+                src="../../assets/food/demo.jpg"
+                alt="dog with a food bag"
+              />
             </div>
-            <div class="img-container thumbnail">
-              <img class="tall" src="../../assets/cat-harness/pink-cat-1.png" />
-            </div>
+            <a href="">image source</a>
           </div>
         </div>
         <div class="right">
           <div class="product-name">
-            <h2>Cat Harness</h2>
-            <h2>$20</h2>
+            <h2>Food Bag Attachment</h2>
+            <h2>$5</h2>
           </div>
           <div class="rating">
-            <img src="../../assets/stars.svg" /> <span>20 reviews</span>
+            <img src="../../assets/stars.svg" alt="4 star ratings image" />
+            <span>9 reviews</span>
           </div>
           <div class="body-content">
-            Soft, stretchy, and resilient. A cushioned, lightweight harness
-            that’s simple to secure and easy to link up with. An adjustable neck
-            and chest for all shapes and sizes. Three leash attachment points
-            because we all lead in different ways.
+            A bag to store food in that attaches to a harness.
           </div>
           <div class="colors">
-            <p>Color: pink</p>
+            <p>Color: orange</p>
             <div class="dots">
-              <div class="red dot"></div>
+              <div class="red dot activated"></div>
               <div class="orange dot"></div>
-              <div class="pink dot activated"></div>
+              <div class="pink dot"></div>
               <div class="blue dot"></div>
             </div>
           </div>
@@ -93,48 +106,63 @@
         <i>Tag us with @MuddyPawsGear to be featured!</i>
         <div class="row">
           <div class="img-container">
-            <img class="wide" src="../../assets/cat-harness/cat-insta1.jpg" />
+            <img
+              class="wide"
+              src="../../assets/dog_in_frame.png"
+              alt="dog with a harness"
+            />
           </div>
           <div class="img-container">
-            <img class="wide" src="../../assets/cat-harness/cat-insta2.jpg" />
-          </div>
-          <div class="img-container">
-            <img class="tall" src="../../assets/cat-harness.jpg" />
+            <img
+              class="wide"
+              src="../../assets/food-bag.jpg"
+              alt="dog with a food bag attachment"
+            />
           </div>
         </div>
       </div>
       <div class="reviews section col">
         <b>Reviews</b>
         <br />
+        <div id="write-reviews">Write a review</div>
+        <div id="load-more">Load more reviews</div>
         <div class="rating">
-          <img src="../../assets/stars.svg" /> <span>20 reviews</span>
+          <img src="../../assets/stars.svg" alt="4 star ratings image" />
+          <span>20 reviews</span>
         </div>
         <div class="row">
           <div class="col review">
             <p>Jean P.</p>
-            <img src="../../assets/stars.svg" />
-            <p>
-              I love this harness for my cat! My only complaint is that it’s
-              hard to hook the leash onto the harness.
-            </p>
+            <img src="../../assets/stars.svg" alt="4 star ratings image" />
+            <p>I love this bag for my cat!</p>
           </div>
           <div class="col review">
             <p>Kath H.</p>
-            <img src="../../assets/stars.svg" />
+            <img src="../../assets/stars.svg" alt="4 star ratings image" />
             <p>
-              This harness is easier to use than all of the others that I’ve
-              bought before!
+              This bag is easier to use than all of the others that I’ve bought
+              before!
             </p>
           </div>
           <div class="col review">
             <p>Edna M.</p>
-            <img src="../../assets/stars.svg" />
-            <p>Great harness!</p>
+            <img src="../../assets/stars.svg" alt="4 star ratings image" />
+            <p>Great bag!</p>
           </div>
           <div class="col review">
             <p>Lu H.</p>
-            <img src="../../assets/stars.svg" />
+            <img src="../../assets/stars.svg" alt="4 star ratings image" />
             <p>Works well!</p>
+          </div>
+          <div class="col review">
+            <p>Penny D.</p>
+            <img src="../../assets/stars.svg" alt="4 star ratings image" />
+            <p>My pet looks really comfortable in it!</p>
+          </div>
+          <div class="col review">
+            <p>C H.</p>
+            <img src="../../assets/stars.svg" alt="4 star ratings image" />
+            <p>great...!</p>
           </div>
         </div>
       </div>

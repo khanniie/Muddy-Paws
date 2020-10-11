@@ -3,6 +3,8 @@
   <head>
     <title>Muddy Paws</title>
 
+    <meta charset="utf-8" />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Corben:wght@400;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
@@ -14,8 +16,10 @@
   <body>
     <div id="navbar">
       <div class="menu-items">
-        <a href="../"><img id="logo" src="../assets/logo.svg" /></a>
-        <p class="menu-item"><a href="../browse">Shop</a></p>
+        <a href="../"
+          ><img id="logo" src="../assets/logo.svg" alt="Muddy Paws site logo"
+        /></a>
+        <p class="menu-item activated"><a href="../browse">Shop</a></p>
         <p class="menu-item"><a href="../about">About us</a></p>
         <p class="menu-item"><a href="../contact">Contact</a></p>
       </div>
@@ -29,7 +33,12 @@
       <div class="products">
         <div class="product-item">
           <div class="img-container">
-            <img class="tall" src="../assets/cat-harness.jpg" />
+            <a href="../products/cat-harness"
+              ><img
+                class="tall"
+                src="../assets/cat-harness.jpg"
+                alt="cat harness preview image"
+            /></a>
           </div>
           <a href="../products/cat-harness">
             <div class="title">
@@ -45,13 +54,20 @@
           </div>
         </div>
         <div class="product-item">
-          <div class="img-container">
-            <img class="wide" src="../assets/dog-harness.jpg" />
-          </div>
-          <div class="title">
-            <span class="dog-name">Dog harness</span>
-            <span>$20</span>
-          </div>
+          <a href="../products/dog-harness">
+            <div class="img-container">
+              <img
+                class="wide"
+                src="../assets/dog-harness.jpg"
+                alt="dog harness preview image"
+              /></div
+          ></a>
+          <a href="../products/dog-harness">
+            <div class="title">
+              <span class="dog-name">Dog harness</span>
+              <span>$20</span>
+            </div></a
+          >
           <div class="dots">
             <div class="red dot activated"></div>
             <div class="orange dot"></div>
@@ -60,13 +76,16 @@
           </div>
         </div>
         <div class="product-item">
-          <div class="img-container">
-            <img class="tall" src="../assets/cat-backpack.jpg" />
-          </div>
-          <div class="title">
-            <span class="dog-name">Cat backpack</span>
-            <span>$20</span>
-          </div>
+          <a href="../products/cat-backpack">
+            <div class="img-container">
+              <img class="tall" src="../assets/cat-backpack.jpg" /></div
+          ></a>
+          <a href="../products/cat-backpack">
+            <div class="title">
+              <span class="dog-name">Cat backpack</span>
+              <span>$20</span>
+            </div></a
+          >
           <div class="dots">
             <div class="red dot"></div>
             <div class="orange dot activated"></div>
@@ -75,13 +94,16 @@
           </div>
         </div>
         <div class="product-item">
-          <div class="img-container">
-            <img class="wide" src="../assets/collar.jpg" />
-          </div>
-          <div class="title">
-            <span class="dog-name">GPS Collar</span>
-            <span>$20</span>
-          </div>
+          <a href="../products/gps-collar">
+            <div class="img-container">
+              <img class="wide" src="../assets/collar.jpg" /></div
+          ></a>
+          <a href="../products/gps-collar">
+            <div class="title">
+              <span class="dog-name">GPS Collar</span>
+              <span>$20</span>
+            </div></a
+          >
           <div class="dots">
             <div class="red dot activated"></div>
             <div class="orange dot"></div>
@@ -93,13 +115,16 @@
       <h2>Harness Attachments</h2>
       <div class="products">
         <div class="product-item">
-          <div class="img-container">
-            <img class="wide" src="../assets/food-bag.jpg" />
-          </div>
-          <div class="title">
-            <span class="dog-name">Food bag attachment</span>
-            <span>$5</span>
-          </div>
+          <a href="../products/food-attachment">
+            <div class="img-container">
+              <img class="wide" src="../assets/food-bag.jpg" /></div
+          ></a>
+          <a href="../products/food-attachment">
+            <div class="title">
+              <span class="dog-name">Food bag attachment</span>
+              <span>$5</span>
+            </div></a
+          >
           <div class="dots">
             <div class="red dot"></div>
             <div class="orange dot"></div>
@@ -112,7 +137,7 @@
             <img class="wide" src="../assets/water-bottle.png" />
           </div>
           <div class="title">
-            <span class="dog-name">Food bag attachment</span>
+            <span class="dog-name">Water attachment</span>
             <span>$5</span>
           </div>
           <div class="dots">
