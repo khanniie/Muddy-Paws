@@ -1,64 +1,226 @@
-import React, { Component } from 'react';
-import customdata from '../data/data-all.js';
-const ReactDOM = require('react-dom')
-const ReactMarkdown = require('react-markdown/with-html')
+import React, { Component } from "react";
+import customdata from "../data/data-all.js";
+import Image from "./Image";
+import Dot from "./Dot";
 
-const data = customdata.test;
+const data = customdata.products;
 
-
-function findElement(url){
-  for (var i = 0; i < data.length; i++){
-    if(data[i].url === url) return data[i];
+function findElement(url) {
+  for (var i = 0; i < data.length; i++) {
+    if (data[i].url === url) return data[i];
   }
   return false;
 }
 
+const sizes = ["Tiny", "Small", "Medium", "Large"];
+
 class ProjectPage extends Component {
-  componentDidMount(){
+  constructor(props) {
+    super(props);
+    this.state = {
+      color: 0,
+      size: 0,
+      quantity: 1,
+    };
+
+    this.incrementQuant = this.incrementQuant.bind(this);
+    this.decrementQuant = this.decrementQuant.bind(this);
+  }
+
+  incrementQuant = () => {
+    this.setState((prevState) => {
+      return { quantity: prevState.quantity + 1 };
+    });
+  };
+
+  decrementQuant = () => {
+    this.setState((prevState) => {
+      return {
+        quantity: prevState.quantity - 1 < 0 ? 0 : prevState.quantity - 1,
+      };
+    });
+  };
+
+  UNSAFE_componentDidMount() {
     window.scrollTo(0, 0);
   }
   render() {
     let element;
-    if(this.props.location.state == null){
+    if (
+      this.props.location.state === undefined ||
+      this.props.location.state === null
+    ) {
       const url = this.props.match.params.id;
-      if(url === "about" || url === "resume") return (<div></div>);
+      if (
+        url === "about" ||
+        url === "browse" ||
+        url === "cart" ||
+        url === "contact" ||
+        url === "account" ||
+        url === "sale"
+      ) {
+        return <span></span>;
+      }
       element = findElement(url);
-      if(element == false){
-        return (<div>Item not found!</div>);
+      if (element === false) {
+        return <div>Item not found!</div>;
       }
     } else {
       element = this.props.location.state.element;
     }
-    const preview_url = element.preview_url;
-    let preview;
-    if (element.preview_type === 'video') {
-      preview = (<iframe width="560" height="315" src={preview_url} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>);
-    } else if (element.preview_type === 'vimeo'){
-      preview = (<iframe src={preview_url} width="640" height="400" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>);
-    } else if (element.preview_type === 'image') {
-      preview = (<img src={preview_url}/>);
-    } else {
-      preview = (<div></div>);
-    }
-    const markdown = element.mark;
-    console.log(element, markdown);
     return (
-      <div>
-      <div className="project_page_body">
-      <h1 className="element_name">{element.name}<i className="des_date">{element.date}</i></h1>
-      <h3>{element.tools}</h3>
-      <div>{preview}</div>
-      <div>
-      <ReactMarkdown
-          className="markdown"
-          source={markdown}
-          escapeHtml={false}/>
-      </div>
-      </div>
+      <div id="content" className="product-detail">
+        <div id="product-detail-main" className="row">
+          <div className="left" id="product-image-container">
+            <Image
+              src={element.imgs[this.state.color]}
+              width={500}
+              height={600}
+              fill={false}
+              style={{ backgroundColor: "white", border: "1px solid grey" }}
+            />
+            <div className="row thumbnails">
+              <a href={element.amazon}>image source</a>
+            </div>
+          </div>
+          <div className="right">
+            <div className="product-name">
+              <h2>{element.name}</h2>
+              <h2>
+                {element.cost !== element.sale ? (
+                  <span>
+                    <span style={{ textDecoration: "line-through" }}>
+                      {"$" + element.cost}
+                    </span>
+                    <span style={{ color: "red" }}>{" $" + element.sale}</span>
+                  </span>
+                ) : (
+                  <span>{"$" + element.cost}</span>
+                )}
+              </h2>
+            </div>
+            <div className="rating">
+              <img src="../../assets/stars.svg" alt="stars" />
+              <span>9 reviews</span>
+            </div>
+            <div className="body-content">{element.description}</div>
+            <div className="colors">
+              <p>Color: {element.colors[this.state.color]}</p>
+              <div className="dots">
+                {element.colors.map((c, idx) => (
+                  <Dot
+                    key={c}
+                    color={c}
+                    activated={idx === this.state.color}
+                    onClick={() => {
+                      this.setState({ color: idx });
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="sizes row">
+              {sizes.map((s, idx) => (
+                <div
+                  key={"sizes" + idx}
+                  className={idx === this.state.size ? "activated" : ""}
+                  onClick={() => this.setState({ size: idx })}
+                >
+                  {s}
+                </div>
+              ))}
+              <p>Size guide</p>
+            </div>
+            <div className="cart-button row">
+              <div id="number" className="row">
+                <span onClick={this.decrementQuant}>-</span>
+                <span>{this.state.quantity}</span>
+                <span onClick={this.incrementQuant}>+</span>
+              </div>
+              <button
+                onClick={() =>
+                  this.props.global.addToCart([
+                    element,
+                    this.state.color,
+                    this.state.size,
+                    this.state.quantity,
+                  ])
+                }
+              >
+                Add to cart
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="details">
+          <div>
+            Materials and specs <span>+</span>
+          </div>
+          <div>
+            Care details <span>+</span>
+          </div>
+          <div>
+            Shipping and returns <span>+</span>
+          </div>
+        </div>
+        <div className="instagram section col">
+          <b>See it on Instagram</b>
+          <br />
+          <i>Tag us with @MuddyPawsGear to be featured!</i>
+          <div className="row" style={{marginTop: "24px"}}>
+            {element.instagram.map((i, idx) => (
+              <Image style={(idx === 0 ? {} : {marginLeft: "24px"})} src={i} width={200} height={200} fill={true}/>
+            ))}
+          </div>
+        </div>
+        <div className="reviews section col">
+          <b>Reviews</b>
+          <br />
+          <div id="write-reviews">Write a review</div>
+          <div id="load-more">Load more reviews</div>
+          <div className="rating">
+            <img src="../../assets/stars.svg" alt="stars" />
+            <span>20 reviews</span>
+          </div>
+          <div className="row">
+            <div className="col review">
+              <p>Jean P.</p>
+              <img src="../../assets/stars.svg" alt="stars" />
+              <p>I love this backpack for my cat!</p>
+            </div>
+            <div className="col review">
+              <p>Kath H.</p>
+              <img src="../../assets/stars.svg" alt="stars" />
+              <p>
+                This backpack is easier to use than all of the others that I’ve
+                bought before!
+              </p>
+            </div>
+            <div className="col review">
+              <p>Edna M.</p>
+              <img src="../../assets/stars.svg" alt="stars" />
+              <p>Great backpack!</p>
+            </div>
+            <div className="col review">
+              <p>Lu H.</p>
+              <img src="../../assets/stars.svg" alt="stars" />
+              <p>Works well!</p>
+            </div>
+            <div className="col review">
+              <p>Penny D.</p>
+              <img src="../../assets/stars.svg" alt="stars" />
+              <p>My pet looks really comfortable in it!</p>
+            </div>
+            <div className="col review">
+              <p>C H.</p>
+              <img src="../../assets/stars.svg" alt="stars" />
+              <p>great...!</p>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-
-export default ProjectPage
+export default ProjectPage;
