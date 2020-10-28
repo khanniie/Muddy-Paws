@@ -49,7 +49,10 @@ class Sale extends Component {
     return (
       <div id="content">
         <h2>Sale</h2>
-        <p>Enjoy substantial discounts on a few of our products as part of our Fall sale!</p>
+        <p>
+          Enjoy substantial discounts on a few of our products as part of our
+          Fall sale!
+        </p>
         <div className="products">
           {saleItems.map((element) => (
             <ProductItem key={element.url} element={element} />

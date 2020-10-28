@@ -286,7 +286,7 @@ class Cart extends Component {
     }
 
     let totalCost = 0;
-    for(var i = 0; i < this.global.state.cart.length; i++){
+    for (var i = 0; i < this.global.state.cart.length; i++) {
       totalCost += this.global.state.cart[i][0].sale;
     }
 
@@ -298,13 +298,25 @@ class Cart extends Component {
           className="col"
         >
           {this.global.state.cart.map((c, idx) => (
-            <CartItem key={c[0].url + idx} element={c} removeItem={() => this.global.removeFromCart(idx)}/>
+            <CartItem
+              key={c[0].url + idx}
+              element={c}
+              removeItem={() => this.global.removeFromCart(idx)}
+            />
           ))}
           <div className="col fees">
-            <p><b>Cost:</b> ${totalCost}</p>
-            <p><b>Taxes:</b> $3</p>
-            <p><b>Shipping flat rate:</b> $5</p>
-            <p><b>Total Cost:</b> ${totalCost + 8}</p>
+            <p>
+              <b>Cost:</b> ${totalCost}
+            </p>
+            <p>
+              <b>Taxes:</b> $3
+            </p>
+            <p>
+              <b>Shipping flat rate:</b> $5
+            </p>
+            <p>
+              <b>Total Cost:</b> ${totalCost + 8}
+            </p>
           </div>
           <button id="checkout">Checkout</button>
         </div>
@@ -320,7 +332,10 @@ function CartItem(props) {
   return (
     <div className="row cart-item">
       <Image src={element[0].imgs[element[1]]} width={200} height={200} />
-      <div className="row" style={{justifyContent: "space-between", width: "calc(100% - 215px)"}}>
+      <div
+        className="row"
+        style={{ justifyContent: "space-between", width: "calc(100% - 215px)" }}
+      >
         <div className="col cart-info">
           <h3>{element[0].name}</h3>
           <p>Color: {element[0].colors[element[1]]}</p>
@@ -336,8 +351,10 @@ function CartItem(props) {
             <span>{"$" + element[0].cost}</span>
           )}
         </div>
-        <div style={{alignSelf:"center"}}>
-          <button onClick={props.removeItem} style={{fontSize: "12px"}}>Remove item</button>
+        <div style={{ alignSelf: "center" }}>
+          <button onClick={props.removeItem} style={{ fontSize: "12px" }}>
+            Remove item
+          </button>
         </div>
       </div>
     </div>
@@ -416,8 +433,8 @@ class App extends Component {
     this.setState({ cart: this.state.cart });
   }
   removeFromCart(idx) {
-    this.state.cart.splice(idx, 1)
-    this.setState({ cart: this.state.cart});
+    this.state.cart.splice(idx, 1);
+    this.setState({ cart: this.state.cart });
   }
 
   AboutRoute({ match, location }) {

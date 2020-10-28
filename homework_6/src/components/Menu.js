@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import logo from "../images/logo.svg";
 
 class Menu extends Component {
   render() {
@@ -12,7 +13,7 @@ class Menu extends Component {
               onClick={() => this.props.global.setState({ tab: "home" })}
               className={url === "home" ? "selected" : ""}
               id="logo"
-              src="../assets/logo.svg"
+              src={logo}
               alt="Muddy Paws site logo"
             />
           </Link>

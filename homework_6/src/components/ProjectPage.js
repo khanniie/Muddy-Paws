@@ -167,9 +167,15 @@ class ProjectPage extends Component {
           <b>See it on Instagram</b>
           <br />
           <i>Tag us with @MuddyPawsGear to be featured!</i>
-          <div className="row" style={{marginTop: "24px"}}>
+          <div className="row" style={{ marginTop: "24px" }}>
             {element.instagram.map((i, idx) => (
-              <Image style={(idx === 0 ? {} : {marginLeft: "24px"})} src={i} width={200} height={200} fill={true}/>
+              <Image
+                style={idx === 0 ? {} : { marginLeft: "24px" }}
+                src={i}
+                width={200}
+                height={200}
+                fill={true}
+              />
             ))}
           </div>
         </div>
