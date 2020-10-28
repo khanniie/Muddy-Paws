@@ -41,6 +41,8 @@ var DATA = {
       instagram: [
         "assets/cat-harness/cat-insta1.jpg",
         "assets/cat-harness/cat-insta2.jpg",
+        "assets/cat-harness/pink-cat-1.png",
+        "assets/cat-harness/pink-cat-2.png",
       ],
       colors: ["pink", "orange", "red", "blue"],
       reviews: ["hi", "hello", "lol"],
@@ -96,7 +98,7 @@ var DATA = {
       sale: 4,
       description: "A bag to store food in that attaches to a harness.",
       url: "food-attachment",
-      instagram: ["demo.jpg"],
+      instagram: ["assets/food-bag.jpg"],
       colors: ["red", "blue"],
       amazon:
         "https://www.amazon.com/Kurgo-Baxter-Backpack-Walking-Camping/dp/B00VTTD580/ref=rtpb_1/136-1990040-3375961?_encoding=UTF8&pd_rd_i=B00VTTD580&pd_rd_r=ac13112b-b4d4-4d48-b892-e3f957661a58&pd_rd_w=EetMU&pd_rd_wg=iKBzb&pf_rd_p=8e29e6d3-1af9-49e1-9000-62311a8a6943&pf_rd_r=MB9S3TGE4PVSYRXN9DX9&psc=1&refRID=MB9S3TGE4PVSYRXN9DX9",

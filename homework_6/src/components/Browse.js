@@ -43,7 +43,7 @@ class ProductItem extends Component {
                 <span style={{ textDecoration: "line-through" }}>
                   {"$" + this.props.element.cost}
                 </span>
-                <span style={{ color: "red" }}>
+                <span style={{ color: "var(--sale-color)" }}>
                   {" $" + this.props.element.sale}
                 </span>
               </span>

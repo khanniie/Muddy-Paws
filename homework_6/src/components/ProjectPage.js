@@ -92,7 +92,7 @@ class ProjectPage extends Component {
                     <span style={{ textDecoration: "line-through" }}>
                       {"$" + element.cost}
                     </span>
-                    <span style={{ color: "red" }}>{" $" + element.sale}</span>
+                    <span style={{ color: "var(--sale-color)" }}>{" $" + element.sale}</span>
                   </span>
                 ) : (
                   <span>{"$" + element.cost}</span>
@@ -172,6 +172,7 @@ class ProjectPage extends Component {
               <Image
                 style={idx === 0 ? {} : { marginLeft: "24px" }}
                 src={i}
+                key={"instagram" + idx}
                 width={200}
                 height={200}
                 fill={true}

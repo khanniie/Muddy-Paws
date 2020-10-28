@@ -48,8 +48,8 @@ class Sale extends Component {
   render() {
     return (
       <div id="content">
-        <h2>Sale</h2>
-        <p>
+        <h2 style={{marginBottom: "8px"}}>Sale</h2>
+        <p style={{paddingBottom: "16px"}}>
           Enjoy substantial discounts on a few of our products as part of our
           Fall sale!
         </p>

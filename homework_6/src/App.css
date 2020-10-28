@@ -12,6 +12,7 @@
   --large-spacing: 56px;
   --medium-text-color: #c09d84;
   --button-color: #b77348;
+  --sale-color: #a73b3b;
 }
 
 @media (max-width: 900px) {
