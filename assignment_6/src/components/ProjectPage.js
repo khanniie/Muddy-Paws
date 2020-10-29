@@ -108,7 +108,7 @@ class ProjectPage extends Component {
             </div>
             <div className="body-content">{element.description}</div>
             <div className="colors">
-              <p>Color: {element.colors[this.state.color]}</p>
+              <p><b>Selected: </b>{(sizes[this.state.size] + " " + element.colors[this.state.color] + " " + element.name).toLowerCase()}</p>
               <div className="dots">
                 {element.colors.map((c, idx) => (
                   <Dot
