@@ -93,7 +93,9 @@ class ProjectPage extends Component {
                     <span style={{ textDecoration: "line-through" }}>
                       {"$" + element.cost}
                     </span>
-                    <span style={{ color: "var(--sale-color)" }}>{" $" + element.sale}</span>
+                    <span style={{ color: "var(--sale-color)" }}>
+                      {" $" + element.sale}
+                    </span>
                   </span>
                 ) : (
                   <span>{"$" + element.cost}</span>

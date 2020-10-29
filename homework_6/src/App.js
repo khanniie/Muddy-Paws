@@ -42,16 +42,16 @@ const Body = () => (
         <div className="middle-product">
           <img src="./assets/cat_image.jpg" alt="cat icon" />
           <p>Perfect for introducing your cat to the outdoors.</p>
-          <a href="./products/cat-harness" className="button">
-            Learn more
-          </a>
+          <Link to="/cat-harness">
+            <div className="button">Learn more</div>
+          </Link>
         </div>
         <div className="middle-product">
           <img src="./assets/dog_image.jpg" alt="dog with harness" />
           <p>A cushioned harness that will let your dog run free.</p>
-          <a href="./products/dog-harness" className="button">
-            Learn more
-          </a>
+          <Link to="/dog-harness">
+            <div className="button">Learn more</div>
+          </Link>
         </div>
       </div>
     </div>
@@ -67,9 +67,9 @@ const Body = () => (
           style={{ zIndex: 10, marginLeft: "50px" }}
         ></Image>
       </div>
-      <a href="./products/food-attachment" className="button">
-        See food attachment
-      </a>
+      <Link to="/food-attachment">
+        <div className="button">See food attachment</div>
+      </Link>
     </div>
   </div>
 );
@@ -361,57 +361,6 @@ function CartItem(props) {
   );
 }
 
-class Resume extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { width: 0 };
-    this.body = document.getElementsByTagName("BODY")[0];
-    this.global = props.global;
-    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
-  }
-
-  componentDidMount() {
-    this.updateWindowDimensions();
-    this.global.setState({ tab: "resume" });
-    window.addEventListener("resize", this.updateWindowDimensions);
-  }
-  //when component unmounts, stop listening
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.updateWindowDimensions);
-    //this.togglebutton.removeEventListener('click', this.togglebutton);
-  }
-  //puts new height/width into state and triggers rerender
-  updateWindowDimensions() {
-    if (this.body != null) {
-      this.setState({
-        width: this.body.clientWidth,
-        height: this.body.clientHeight,
-      });
-    }
-  }
-
-  render() {
-    if (this.state.width < 600) {
-      return (
-        <div id="resume-page">
-          <div className="warning">
-            <p>
-              Your screen size is too small to view the PDF, please either
-              resize the page, or
-              <br />
-              <a href="https://www.dropbox.com/s/56hjgxii5l3iszy/constanceye_resume_feb_2019.pdf?dl=0">
-                click on this to view it through Dropbox.
-              </a>
-            </p>
-          </div>
-        </div>
-      );
-    } else {
-      return <div id="resume-page">resume</div>;
-    }
-  }
-}
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -422,7 +371,6 @@ class App extends Component {
     this.AboutRoute = this.AboutRoute.bind(this);
     this.BrowseRoute = this.BrowseRoute.bind(this);
     this.CartRoute = this.CartRoute.bind(this);
-    this.ResumeRoute = this.ResumeRoute.bind(this);
     this.IndexRoute = this.IndexRoute.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.removeFromCart = this.removeFromCart.bind(this);
@@ -449,10 +397,6 @@ class App extends Component {
     return <Index global={this} match={match} location={location}></Index>;
   }
 
-  ResumeRoute({ match, location }) {
-    return <Resume global={this} match={match} location={location}></Resume>;
-  }
-
   CartRoute({ match, location }) {
     return <Cart global={this} match={match} location={location}></Cart>;
   }
@@ -476,7 +420,6 @@ class App extends Component {
               cartItems={this.state.cart.length}
             ></Menu>
             <Route path="/about" component={this.AboutRoute} />
-            <Route path="/resume" component={this.ResumeRoute} />
             <Route path="/browse" component={this.BrowseRoute} />
             <Route path="/cart" component={this.CartRoute} />
             <Route path="/sale" component={this.SaleRoute} />

@@ -45,7 +45,7 @@ class Menu extends Component {
             <p
               onClick={() => this.props.global.setState({ tab: "sale" })}
               className={url === "sale" ? "menu-item selected" : "menu-item"}
-              style={{color: "var(--sale-color)"}}
+              style={{ color: "var(--sale-color)" }}
             >
               Sale
             </p>
