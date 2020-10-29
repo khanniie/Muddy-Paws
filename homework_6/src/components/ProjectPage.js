@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import customdata from "../data/data-all.js";
 import Image from "./Image";
 import Dot from "./Dot";
+import stars from "../images/stars.svg";
 
 const data = customdata.products;
 
@@ -100,7 +101,7 @@ class ProjectPage extends Component {
               </h2>
             </div>
             <div className="rating">
-              <img src="../../assets/stars.svg" alt="stars" />
+              <img src={stars} alt="stars" />
               <span>9 reviews</span>
             </div>
             <div className="body-content">{element.description}</div>
@@ -186,18 +187,18 @@ class ProjectPage extends Component {
           <div id="write-reviews">Write a review</div>
           <div id="load-more">Load more reviews</div>
           <div className="rating">
-            <img src="../../assets/stars.svg" alt="stars" />
+            <img src={stars} alt="stars" />
             <span>20 reviews</span>
           </div>
           <div className="row">
             <div className="col review">
               <p>Jean P.</p>
-              <img src="../../assets/stars.svg" alt="stars" />
+              <img src={stars} alt="stars" />
               <p>I love this backpack for my cat!</p>
             </div>
             <div className="col review">
               <p>Kath H.</p>
-              <img src="../../assets/stars.svg" alt="stars" />
+              <img src={stars} alt="stars" />
               <p>
                 This backpack is easier to use than all of the others that I’ve
                 bought before!
@@ -205,22 +206,22 @@ class ProjectPage extends Component {
             </div>
             <div className="col review">
               <p>Edna M.</p>
-              <img src="../../assets/stars.svg" alt="stars" />
+              <img src={stars} alt="stars" />
               <p>Great backpack!</p>
             </div>
             <div className="col review">
               <p>Lu H.</p>
-              <img src="../../assets/stars.svg" alt="stars" />
+              <img src={stars} alt="stars" />
               <p>Works well!</p>
             </div>
             <div className="col review">
               <p>Penny D.</p>
-              <img src="../../assets/stars.svg" alt="stars" />
+              <img src={stars} alt="stars" />
               <p>My pet looks really comfortable in it!</p>
             </div>
             <div className="col review">
               <p>C H.</p>
-              <img src="../../assets/stars.svg" alt="stars" />
+              <img src={stars} alt="stars" />
               <p>great...!</p>
             </div>
           </div>
