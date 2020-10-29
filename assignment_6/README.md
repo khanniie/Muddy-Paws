@@ -5,4 +5,4 @@ Because the links don't work (for me at least) in the Github PDF viewer, please 
 
 App built in React. Code can be found in the /src folder.
 
-## [Live Site](connie.dog/PUI_homework_6)
+## [Live Site](https://connie.dog/PUI_homework_6)
