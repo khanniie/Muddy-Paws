@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import { HashRouter as Router, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 import Menu from "./components/Menu";
 import Sale from "./components/Sale";
 import Browse from "./components/Browse";
 import Image from "./components/Image";
+import Cart from "./components/Cart";
+import Wishlist from "./components/Wishlist";
 
 import ProjectPage from "./components/ProjectPage";
 
@@ -23,8 +25,8 @@ const Body = () => (
         <div className="full-center">
           <h1>We make gear for pets who love adventure.</h1>
           <p>Each product is made by hand, custom fit to your pet's size.</p>
-          <Link to="/browse" className="button important-button">
-            Shop products
+          <Link to="/browse">
+            <button className="important-button">Shop products</button>
           </Link>
         </div>
       </div>
@@ -43,14 +45,14 @@ const Body = () => (
           <img src="./assets/cat_image.jpg" alt="cat icon" />
           <p>Perfect for introducing your cat to the outdoors.</p>
           <Link to="/cat-harness">
-            <div className="button">Learn more</div>
+            <button>Learn more</button>
           </Link>
         </div>
         <div className="middle-product">
           <img src="./assets/dog_image.jpg" alt="dog with harness" />
           <p>A cushioned harness that will let your dog run free.</p>
           <Link to="/dog-harness">
-            <div className="button">Learn more</div>
+            <button>Learn more</button>
           </Link>
         </div>
       </div>
@@ -68,7 +70,7 @@ const Body = () => (
         ></Image>
       </div>
       <Link to="/food-attachment">
-        <div className="button">See food attachment</div>
+        <button>See food attachment</button>
       </Link>
     </div>
   </div>
@@ -243,137 +245,23 @@ class About extends Component {
   }
 }
 
-class Cart extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { width: 0 };
-    this.body = document.getElementsByTagName("BODY")[0];
-    this.global = props.global;
-    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
-  }
-
-  componentDidMount() {
-    this.updateWindowDimensions();
-    this.global.setState({ tab: "cart" });
-    window.addEventListener("resize", this.updateWindowDimensions);
-  }
-  //when component unmounts, stop listening
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.updateWindowDimensions);
-    //this.togglebutton.removeEventListener('click', this.togglebutton);
-  }
-  //puts new height/width into state and triggers rerender
-  updateWindowDimensions() {
-    if (this.body != null) {
-      this.setState({
-        width: this.body.clientWidth,
-        height: this.body.clientHeight,
-      });
-    }
-  }
-
-  render() {
-    if (this.global.state.cart.length === 0) {
-      return (
-        <div id="cart" className="col">
-          <h1>There's nothing in your cart just yet.</h1>
-          <br />
-          <Link to="/browse">
-            <button style={{ marginTop: "12px" }}>Go to products page</button>
-          </Link>
-        </div>
-      );
-    }
-
-    let totalCost = 0;
-    for (var i = 0; i < this.global.state.cart.length; i++) {
-      totalCost += this.global.state.cart[i][0].sale;
-    }
-
-    return (
-      <div id="cart" className="col">
-        <h1>Your cart</h1>
-        <div
-          style={{ width: "40%", minWidth: "500px", marginTop: "48px" }}
-          className="col"
-        >
-          {this.global.state.cart.map((c, idx) => (
-            <CartItem
-              key={c[0].url + idx}
-              element={c}
-              removeItem={() => this.global.removeFromCart(idx)}
-            />
-          ))}
-          <div className="col fees">
-            <p>
-              <b>Cost:</b> ${totalCost}
-            </p>
-            <p>
-              <b>Taxes:</b> $3
-            </p>
-            <p>
-              <b>Shipping flat rate:</b> $5
-            </p>
-            <p>
-              <b>Total Cost:</b> ${totalCost + 8}
-            </p>
-          </div>
-          <button id="checkout">Checkout</button>
-        </div>
-      </div>
-    );
-  }
-}
-
-const sizes = ["Tiny", "Small", "Medium", "Large"];
-
-function CartItem(props) {
-  let element = props.element;
-  return (
-    <div className="row cart-item">
-      <Image src={element[0].imgs[element[1]]} width={200} height={200} />
-      <div
-        className="row"
-        style={{ justifyContent: "space-between", width: "calc(100% - 215px)" }}
-      >
-        <div className="col cart-info">
-          <h3>{element[0].name}</h3>
-          <p>Color: {element[0].colors[element[1]]}</p>
-          <p>Size: {sizes[element[2]]}</p>
-          {element[0].cost !== element[0].sale ? (
-            <span>
-              <span style={{ textDecoration: "line-through" }}>
-                {"$" + element[0].cost}
-              </span>
-              <span style={{ color: "red" }}>{" $" + element[0].sale}</span>
-            </span>
-          ) : (
-            <span>{"$" + element[0].cost}</span>
-          )}
-        </div>
-        <div style={{ alignSelf: "center" }}>
-          <button onClick={props.removeItem} style={{ fontSize: "12px" }}>
-            Remove item
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       tab: "about",
       cart: [],
+      wishlist: [],
     };
     this.AboutRoute = this.AboutRoute.bind(this);
     this.BrowseRoute = this.BrowseRoute.bind(this);
+    this.WishlistRoute = this.WishlistRoute.bind(this);
     this.CartRoute = this.CartRoute.bind(this);
     this.IndexRoute = this.IndexRoute.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.removeFromCart = this.removeFromCart.bind(this);
+    this.addToWishlist = this.addToWishlist.bind(this);
+    this.removeFromWishlist = this.removeFromWishlist.bind(this);
   }
 
   addToCart(item) {
@@ -383,6 +271,16 @@ class App extends Component {
   removeFromCart(idx) {
     this.state.cart.splice(idx, 1);
     this.setState({ cart: this.state.cart });
+  }
+
+  addToWishlist(item) {
+    this.state.wishlist.push(item);
+    this.setState({ wishlist: this.state.wishlist });
+  }
+
+  removeFromWishlist(idx) {
+    this.state.wishlist.splice(idx, 1);
+    this.setState({ wishlist: this.state.wishlist });
   }
 
   AboutRoute({ match, location }) {
@@ -399,6 +297,12 @@ class App extends Component {
 
   CartRoute({ match, location }) {
     return <Cart global={this} match={match} location={location}></Cart>;
+  }
+
+  WishlistRoute({ match, location }) {
+    return (
+      <Wishlist global={this} match={match} location={location}></Wishlist>
+    );
   }
 
   SaleRoute({ match, location }) {
@@ -419,11 +323,14 @@ class App extends Component {
               tab={this.state.tab}
               cartItems={this.state.cart.length}
             ></Menu>
-            <Route path="/about" component={this.AboutRoute} />
-            <Route path="/browse" component={this.BrowseRoute} />
-            <Route path="/cart" component={this.CartRoute} />
-            <Route path="/sale" component={this.SaleRoute} />
-            <Route path="/" component={this.IndexRoute} />
+            <Switch>
+              <Route path="/about" component={this.AboutRoute} />
+              <Route path="/browse" component={this.BrowseRoute} />
+              <Route path="/cart" component={this.CartRoute} />
+              <Route path="/wishlist" component={this.WishlistRoute} />
+              <Route path="/sale" component={this.SaleRoute} />
+              <Route path="/" component={this.IndexRoute} />
+            </Switch>
           </div>
         </Router>
       </div>

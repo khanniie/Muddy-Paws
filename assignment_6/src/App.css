@@ -7,7 +7,8 @@
   --alt-2-bg-color: #fee8dd;
   --light-text-color: #fff1dd;
   --dark-color: #204336;
-  --small-spacing: 16px;
+  --small-spacing: 12px;
+  --small-medium-spacing: 18px;
   --medium-spacing: 36px;
   --large-spacing: 56px;
   --medium-text-color: #c09d84;
@@ -158,31 +159,19 @@ h2 {
   line-height: 140%;
 }
 
-.button {
-  font-family: Corben;
-  font-weight: 700;
-  border: 3px solid var(--medium-text-color);
-  padding: var(--small-spacing) var(--medium-spacing);
-  font-size: 24px;
-  border-radius: var(--small-spacing);
-  background-color: rgba(0, 0, 0, 0);
-  color: var(--medium-text-color);
-  transition: background-color 0.4s;
-}
-
 button {
   font-family: Corben;
   font-weight: 700;
   border: 3px solid var(--medium-text-color);
-  padding: var(--small-spacing) var(--medium-spacing);
-  font-size: 24px;
+  padding: var(--small-spacing) var(--small-medium-spacing);
+  font-size: 16px;
   border-radius: var(--small-spacing);
   background-color: rgba(0, 0, 0, 0);
   color: var(--medium-text-color);
   transition: background-color 0.4s;
 }
 
-.button:hover {
+button:hover {
   background-color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
 }
@@ -190,6 +179,7 @@ button {
 .important-button {
   background-color: var(--button-color);
   border: 0px;
+  font-size: 24px;
   color: var(--light-text-color);
   box-shadow: 0px 4px 4px 2px rgba(78, 51, 35, 0.2),
     0px 4px 4px rgba(86, 64, 51, 0.1), 0px 4px 12px rgba(150, 133, 123, 0.08);
@@ -496,6 +486,46 @@ button {
   margin-top: 0px;
 }
 
+/* wishlist */
+.wishlist-item h3 {
+  font-weight: 800;
+}
+
+.wishlist-item img {
+  border: 1px solid grey;
+}
+
+.wishlist-item button {
+  padding: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.wishlist-info {
+  align-items: flex-start !important;
+  padding-left: 24px;
+}
+
+.wishlist-item {
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 36px;
+  width: 100%;
+  min-width: 600px;
+  justify-content: flex-start !important;
+  padding: 24px;
+  border-radius: 16px;
+  font-size: 18px;
+}
+
+.wishlist-info {
+  margin-left: 12px;
+  font-family: Roboto, sans-serif;
+}
+
+.wishlist-info p {
+  margin-top: 0px;
+}
+
 .num-items {
   background-color: var(--dark-color);
   border-radius: 50%;
@@ -514,7 +544,7 @@ button {
 
 #number {
   position: relative;
-  width: 130px;
+  width: 90px;
   font-size: 32px;
   border: 2px solid var(--dark-color);
   /*  height: 100%;*/
@@ -673,4 +703,71 @@ button {
 
 .fees p {
   margin-top: 0px;
+}
+
+.rotation-button {
+  border: 1px solid var(--dark-color);
+  border-radius: 12px;
+  font-size: 64px;
+  margin: 0px var(--medium-spacing);
+  padding: 0px var(--small-spacing);
+  user-select: none;
+}
+
+.rotation-button:hover {
+  cursor: pointer;
+}
+
+
+.checkmark__circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: #7ac142;
+  fill: none;
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 2;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+  margin: 10% auto;
+  box-shadow: inset 0px 0px 0px #7ac142;
+  animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+}
+
+.checkmark__check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes scale {
+  0%, 100% {
+    transform: none;
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+@keyframes fill {
+  100% {
+    box-shadow: inset 0px 0px 0px 30px #7ac142;
+  }
+}
+
+svg{
+  margin: 0px 0px 0px 8px !important;
 }

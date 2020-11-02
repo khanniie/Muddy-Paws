@@ -1,10 +1,28 @@
 import React, { Component } from "react";
 import customdata from "../data/data-all.js";
 import Image from "./Image";
+import { Link } from "react-router-dom";
 import Dot from "./Dot";
+import Checkmark from "./Checkmark";
+
 import stars from "../images/stars.svg";
 
 const data = customdata.products;
+
+const RotationItem = (props) => {
+  return (
+    <div key={props.element.src} className="col">
+      <Image
+        style={{ backgroundColor: "white", border: "1px solid grey" }}
+        src={props.element.imgs[0]}
+        width={300}
+        height={200}
+        fill={false}
+      />
+      <h3>{props.element.name}</h3>
+    </div>
+  );
+};
 
 function findElement(url) {
   for (var i = 0; i < data.length; i++) {
@@ -22,10 +40,35 @@ class ProjectPage extends Component {
       color: 0,
       size: 0,
       quantity: 1,
+      rotationItem: 2,
+      added: false,
+      addedWishlist: false
     };
+
+    if (props.location.state === undefined || props.location.state === null) {
+      const url = props.match.params.id;
+      console.log(url);
+      if (
+        url === "about" ||
+        url === "browse" ||
+        url === "cart" ||
+        url === "contact" ||
+        url === "account" ||
+        url === "sale" ||
+        url === "wishlist"
+      ) {
+        this.state.element = false;
+      } else {
+        this.state.element = findElement(url);
+      }
+    } else {
+      this.state.element = props.location.state.element;
+    }
 
     this.incrementQuant = this.incrementQuant.bind(this);
     this.decrementQuant = this.decrementQuant.bind(this);
+    this.incrementRotation = this.incrementRotation.bind(this);
+    this.decrementRotation = this.decrementRotation.bind(this);
   }
 
   incrementQuant = () => {
@@ -42,32 +85,33 @@ class ProjectPage extends Component {
     });
   };
 
+  incrementRotation = () => {
+    this.setState((prevState) => {
+      let newIdx = prevState.rotationItem + 1;
+      if (newIdx >= this.state.element.similar.length) {
+        newIdx = 0;
+      }
+      return { rotationItem: newIdx };
+    });
+  };
+
+  decrementRotation = () => {
+    this.setState((prevState) => {
+      let newIdx = prevState.rotationItem - 1;
+      if (newIdx < 0) {
+        newIdx = this.state.element.similar.length - 1;
+      }
+      return { rotationItem: newIdx };
+    });
+  };
+
   UNSAFE_componentDidMount() {
     window.scrollTo(0, 0);
   }
   render() {
-    let element;
-    if (
-      this.props.location.state === undefined ||
-      this.props.location.state === null
-    ) {
-      const url = this.props.match.params.id;
-      if (
-        url === "about" ||
-        url === "browse" ||
-        url === "cart" ||
-        url === "contact" ||
-        url === "account" ||
-        url === "sale"
-      ) {
-        return <span></span>;
-      }
-      element = findElement(url);
-      if (element === false) {
-        return <div>Item not found!</div>;
-      }
-    } else {
-      element = this.props.location.state.element;
+    let element = this.state.element;
+    if (element === false) {
+      return <span></span>;
     }
     return (
       <div id="content" className="product-detail">
@@ -108,7 +152,16 @@ class ProjectPage extends Component {
             </div>
             <div className="body-content">{element.description}</div>
             <div className="colors">
-              <p><b>Selected: </b>{(sizes[this.state.size] + " " + element.colors[this.state.color] + " " + element.name).toLowerCase()}</p>
+              <p>
+                <b>Selected: </b>
+                {(
+                  sizes[this.state.size] +
+                  " " +
+                  element.colors[this.state.color] +
+                  " " +
+                  element.name
+                ).toLowerCase()}
+              </p>
               <div className="dots">
                 {element.colors.map((c, idx) => (
                   <Dot
@@ -140,18 +193,69 @@ class ProjectPage extends Component {
                 <span>{this.state.quantity}</span>
                 <span onClick={this.incrementQuant}>+</span>
               </div>
-              <button
-                onClick={() =>
+              {
+                this.state.added ? (
+                <button                 onClick={() => {
                   this.props.global.addToCart([
                     element,
                     this.state.color,
                     this.state.size,
                     this.state.quantity,
+                  ]);
+                  this.setState({added: true})
+                }}>
+                  <div className="row"style={{alignItems:"center"}}>
+                  <span>Added</span> 
+                  <Checkmark/>
+                </div>
+                </button>) : (<button
+                onClick={() => {
+                  this.props.global.addToCart([
+                    element,
+                    this.state.color,
+                    this.state.size,
+                    this.state.quantity,
+                  ]);
+                  this.setState({added: true})
+                }
+                  
+                }
+              > <span>Add to cart</span> 
+              </button>)}
+              {
+                this.state.addedWishlist ? (<button
+                  style={{ marginLeft: "var(--small-spacing)" }}
+                  onClick={() =>
+                    {this.props.global.addToWishlist([
+                      element,
+                      this.state.color,
+                      this.state.size,
+                      this.state.quantity,
+                    ])
+                    this.setState({addedWishlist: true})}
+                  }
+                >
+                  <div className="row"style={{alignItems:"center"}}>
+                  <span>In wishlist</span> 
+                  <Checkmark/>
+                </div>
+                </button>) : (<button
+                style={{ marginLeft: "var(--small-spacing)" }}
+                onClick={() =>
+                  {this.props.global.addToWishlist([
+                    element,
+                    this.state.color,
+                    this.state.size,
+                    this.state.quantity,
                   ])
+                  this.setState({addedWishlist: true})}
                 }
               >
-                Add to cart
-              </button>
+                <div className="row"style={{alignItems:"center"}}>
+                  <span>Add to wishlist</span> 
+                </div>
+              </button>)
+              }
             </div>
           </div>
         </div>
@@ -225,6 +329,33 @@ class ProjectPage extends Component {
               <p>C H.</p>
               <img src={stars} alt="stars" />
               <p>great...!</p>
+            </div>
+          </div>
+        </div>
+        <div style={{ padding: "var(--medium-spacing)" }}>
+          <h1>Similar products</h1>
+          <div
+            className="row"
+            style={{ marginTop: "var(--medium-spacing)", alignItems: "center" }}
+          >
+            <div className="rotation-button" onClick={this.decrementRotation}>{"<"}</div>
+            <Link
+              to={data[element.similar[this.state.rotationItem]].url}
+              onClick={() =>{
+                window.scrollTo(0, 0);
+                this.setState({
+                  rotationItem: 0,
+                  element: data[element.similar[this.state.rotationItem]],
+                })
+              }
+              }
+            >
+              <RotationItem
+                element={data[element.similar[this.state.rotationItem]]}
+              ></RotationItem>
+            </Link>
+            <div className="rotation-button" onClick={this.incrementRotation}>
+              {">"}
             </div>
           </div>
         </div>
