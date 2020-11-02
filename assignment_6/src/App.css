@@ -718,7 +718,6 @@ button:hover {
   cursor: pointer;
 }
 
-
 .checkmark__circle {
   stroke-dasharray: 166;
   stroke-dashoffset: 166;
@@ -739,7 +738,8 @@ button:hover {
   stroke-miterlimit: 10;
   margin: 10% auto;
   box-shadow: inset 0px 0px 0px #7ac142;
-  animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+  animation: fill 0.4s ease-in-out 0.4s forwards,
+    scale 0.3s ease-in-out 0.9s both;
 }
 
 .checkmark__check {
@@ -755,7 +755,8 @@ button:hover {
   }
 }
 @keyframes scale {
-  0%, 100% {
+  0%,
+  100% {
     transform: none;
   }
   50% {
@@ -768,6 +769,6 @@ button:hover {
   }
 }
 
-svg{
+svg {
   margin: 0px 0px 0px 8px !important;
 }

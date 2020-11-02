@@ -43,7 +43,7 @@ class Cart extends Component {
             <button style={{ marginTop: "12px" }}>Go to products page</button>
           </Link>
           <Link to="/wishlist">
-            <button style={{ marginTop: "12px"}}>Go to wishlist</button>
+            <button style={{ marginTop: "12px" }}>Go to wishlist</button>
           </Link>
         </div>
       );
@@ -58,7 +58,15 @@ class Cart extends Component {
       <div id="cart" className="col">
         <h1>Your cart</h1>
         <Link to="/wishlist">
-          <p style={{fontSize: "24px", fontStyle: "italic", textDecoration:"underline"}}>Go to wishlist</p>
+          <p
+            style={{
+              fontSize: "24px",
+              fontStyle: "italic",
+              textDecoration: "underline",
+            }}
+          >
+            Go to wishlist
+          </p>
         </Link>
         <div
           style={{ width: "40%", minWidth: "500px", marginTop: "48px" }}

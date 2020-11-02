@@ -45,7 +45,7 @@ class Wishlist extends Component {
         </div>
       );
     }
-    
+
     return (
       <div id="cart" className="col">
         <h1>Your wishlist</h1>

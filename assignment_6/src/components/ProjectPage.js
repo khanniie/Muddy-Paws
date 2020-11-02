@@ -42,7 +42,7 @@ class ProjectPage extends Component {
       quantity: 1,
       rotationItem: 2,
       added: false,
-      addedWishlist: false
+      addedWishlist: false,
     };
 
     if (props.location.state === undefined || props.location.state === null) {
@@ -193,69 +193,75 @@ class ProjectPage extends Component {
                 <span>{this.state.quantity}</span>
                 <span onClick={this.incrementQuant}>+</span>
               </div>
-              {
-                this.state.added ? (
-                <button                 onClick={() => {
-                  this.props.global.addToCart([
-                    element,
-                    this.state.color,
-                    this.state.size,
-                    this.state.quantity,
-                  ]);
-                  this.setState({added: true})
-                }}>
-                  <div className="row"style={{alignItems:"center"}}>
-                  <span>Added</span> 
-                  <Checkmark/>
-                </div>
-                </button>) : (<button
-                onClick={() => {
-                  this.props.global.addToCart([
-                    element,
-                    this.state.color,
-                    this.state.size,
-                    this.state.quantity,
-                  ]);
-                  this.setState({added: true})
-                }
-                  
-                }
-              > <span>Add to cart</span> 
-              </button>)}
-              {
-                this.state.addedWishlist ? (<button
-                  style={{ marginLeft: "var(--small-spacing)" }}
-                  onClick={() =>
-                    {this.props.global.addToWishlist([
+              {this.state.added ? (
+                <button
+                  onClick={() => {
+                    this.props.global.addToCart([
                       element,
                       this.state.color,
                       this.state.size,
                       this.state.quantity,
-                    ])
-                    this.setState({addedWishlist: true})}
-                  }
+                    ]);
+                    this.setState({ added: true });
+                  }}
                 >
-                  <div className="row"style={{alignItems:"center"}}>
-                  <span>In wishlist</span> 
-                  <Checkmark/>
-                </div>
-                </button>) : (<button
-                style={{ marginLeft: "var(--small-spacing)" }}
-                onClick={() =>
-                  {this.props.global.addToWishlist([
-                    element,
-                    this.state.color,
-                    this.state.size,
-                    this.state.quantity,
-                  ])
-                  this.setState({addedWishlist: true})}
-                }
-              >
-                <div className="row"style={{alignItems:"center"}}>
-                  <span>Add to wishlist</span> 
-                </div>
-              </button>)
-              }
+                  <div className="row" style={{ alignItems: "center" }}>
+                    <span>Added</span>
+                    <Checkmark />
+                  </div>
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    this.props.global.addToCart([
+                      element,
+                      this.state.color,
+                      this.state.size,
+                      this.state.quantity,
+                    ]);
+                    this.setState({ added: true });
+                  }}
+                >
+                  {" "}
+                  <span>Add to cart</span>
+                </button>
+              )}
+              {this.state.addedWishlist ? (
+                <button
+                  style={{ marginLeft: "var(--small-spacing)" }}
+                  onClick={() => {
+                    this.props.global.addToWishlist([
+                      element,
+                      this.state.color,
+                      this.state.size,
+                      this.state.quantity,
+                    ]);
+                    this.setState({ addedWishlist: true });
+                  }}
+                >
+                  <div className="row" style={{ alignItems: "center" }}>
+                    <span>In wishlist</span>
+                    <Checkmark />
+                  </div>
+                </button>
+              ) : (
+                <button
+                  style={{ marginLeft: "var(--small-spacing)" }}
+                  onClick={() => {
+                    this.props.global.addToWishlist([
+                      element,
+                      this.state.color,
+                      this.state.size,
+                      this.state.quantity,
+                    ]);
+                    this.setState({ addedWishlist: true });
+                  }}
+                >
+                  <div className="row" style={{ alignItems: "center" }}>
+                    <span>Add to wishlist</span>
+                  </div>
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -338,17 +344,18 @@ class ProjectPage extends Component {
             className="row"
             style={{ marginTop: "var(--medium-spacing)", alignItems: "center" }}
           >
-            <div className="rotation-button" onClick={this.decrementRotation}>{"<"}</div>
+            <div className="rotation-button" onClick={this.decrementRotation}>
+              {"<"}
+            </div>
             <Link
               to={data[element.similar[this.state.rotationItem]].url}
-              onClick={() =>{
+              onClick={() => {
                 window.scrollTo(0, 0);
                 this.setState({
                   rotationItem: 0,
                   element: data[element.similar[this.state.rotationItem]],
-                })
-              }
-              }
+                });
+              }}
             >
               <RotationItem
                 element={data[element.similar[this.state.rotationItem]]}
