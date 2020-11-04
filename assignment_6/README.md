@@ -8,4 +8,4 @@ Because the links don't work (for me at least) in the Github PDF viewer, please 
 
 App built in React. Code can be found in the /src folder.
 
-## [Live Site](https://connie.dog/PUI_homework_6)
+## [Link to live site](https://connie.dog/PUI_homework_6)
